@@ -17,14 +17,14 @@ const searchMovieReducer = (state, action) => {
         loading: false,
         movies: action.payload.results,
         page: action.payload.page,
-        totalPage: action.payload.total_pages,
+        totalPages: action.payload.total_pages,
       };
     case SEARCH_MOVIE_FAILURE:
       return {
         ...state,
         loading: false,
-        errorMessages: action.payload.errors
-      }
+        errorMessages: action.payload.errors,
+      };
     default:
       return state;
   }
