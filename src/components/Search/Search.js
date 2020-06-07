@@ -9,10 +9,6 @@ const Search = (props) => {
     setSearchValue(e.target.value);
   };
 
-  const handleButtonClick = () => {
-    props.search(searchValue);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     props.search(searchValue);
@@ -30,7 +26,6 @@ const Search = (props) => {
         <button
           className="Search__Button Search__Button--primary Search__Button--inside"
           type="submit"
-          onClick={handleButtonClick}
         >
           Search
         </button>
