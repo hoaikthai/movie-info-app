@@ -1,0 +1,25 @@
+.PaginationItem {
+  background-color: transparent;
+  margin: 0 2px;
+  border: 5px;
+  border-radius: 2px;
+  cursor: pointer;
+  min-width: 50px;
+  min-height: 50px;
+  text-align: center;
+
+  &:hover {
+    background-color: #7f8ff450;
+  }
+
+  &--active {
+    background-color: #7f8ff450;
+  }
+
+  &--disabled {
+    color: #ccc;
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
