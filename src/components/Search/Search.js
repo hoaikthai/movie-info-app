@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import "./Search.scss";
 
-const Search = (props) => {
-  const [searchValue, setSearchValue] = useState("");
+const Search = ({ defaultValue, onSearch }) => {
+  const [searchValue, setSearchValue] = useState(defaultValue ?? "");
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -11,7 +11,7 @@ const Search = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.search(searchValue);
+    onSearch(searchValue);
   };
 
   return (

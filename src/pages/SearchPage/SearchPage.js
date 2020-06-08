@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useCallback } from "react";
 import { withRouter } from "react-router";
 import * as qs from "query-string";
 
@@ -14,8 +14,15 @@ const SearchPage = ({ history, location }) => {
   const { movies, totalPages, loading, errorMessages } = state;
   const queryParams = location.search;
 
+  const applyParams = useCallback(
+    ({queryText, page}) => {
+      history.push({ search: `?query=${queryText}&page=${page}` });
+    },
+    [history]
+  );
+
   const search = (text) => {
-    history.push({ search: `?query=${text}&page=1` });
+    applyParams({ queryText: text, page: 1 });
   };
 
   useEffect(() => {
@@ -25,12 +32,12 @@ const SearchPage = ({ history, location }) => {
       return;
     }
     fetchMovies({ ...parsedParams, dispatch: dispatch });
-    history.push({ search: `?query=${query}&page=${page}` });
-  }, [queryParams]);
+    applyParams({queryText: query, page: page})
+  }, [queryParams, applyParams]);
 
   return (
     <div>
-      <Search search={search} />
+      <Search onSearch={search} />
       {loading ? (
         <span>loading...</span>
       ) : errorMessages ? (
