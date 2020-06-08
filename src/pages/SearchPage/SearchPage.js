@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect, useCallback } from "react";
 import { withRouter } from "react-router";
-import * as qs from "query-string";
 
 import Search from "components/Search/Search";
 import MovieContainer from "components/Movies/MovieContainer";
@@ -9,10 +8,12 @@ import reducer from "store/reducers/searchMovieReducer";
 import { initialState } from "store/initialStates/searchMovie";
 import { fetchMovies } from "components/Movies/utils";
 
-const SearchPage = ({ history, location }) => {
+const SearchPage = ({ history }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { movies, totalPages, loading, errorMessages } = state;
-  const queryParams = location.search;
+  const urlObject = new URL(window.location.href);
+  const queryText = urlObject.searchParams.get("query");
+  const page = urlObject.searchParams.get("page");
 
   const applyParams = useCallback(
     ({queryText, page}) => {
@@ -26,14 +27,12 @@ const SearchPage = ({ history, location }) => {
   };
 
   useEffect(() => {
-    const parsedParams = qs.parse(queryParams);
-    const { query, page } = parsedParams;
-    if (query === undefined || page === undefined) {
+    if (!queryText && !page) {
       return;
     }
-    fetchMovies({ ...parsedParams, dispatch: dispatch });
-    applyParams({queryText: query, page: page})
-  }, [queryParams, applyParams]);
+    fetchMovies({ query: queryText, page: page, dispatch: dispatch });
+    applyParams({queryText: queryText, page: page})
+  }, [queryText, page, applyParams]);
 
   return (
     <div>
