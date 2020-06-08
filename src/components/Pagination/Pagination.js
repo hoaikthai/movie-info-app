@@ -25,7 +25,7 @@ const Pagination = ({ totalPages, location }) => {
         let active = currentPage === text;
         let disabled =
           (currentPage === "1" && [PREVIOUS, FIRST].includes(text)) ||
-          (currentPage === totalPages && [NEXT, LAST].includes(text));
+          (currentPage === String(totalPages) && [NEXT, LAST].includes(text));
         let value = text;
         if ([PREVIOUS, NEXT, FIRST, LAST].includes(text)) {
           value = mapTextToPage({
