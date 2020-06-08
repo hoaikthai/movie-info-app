@@ -8,6 +8,10 @@ import PaginationItem from "./PaginationItem/PaginationItem";
 import "./Pagination.scss";
 
 const Pagination = ({ totalPages, location }) => {
+  if (!totalPages) {
+    return null;
+  }
+
   const parsedParams = qs.parse(location.search);
   const currentPage = parsedParams.page;
   const paginationTextArray = generatePaginationArray({

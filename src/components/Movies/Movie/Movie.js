@@ -4,10 +4,9 @@ import { DEFAULT_POSTER, MOVIE_POSTER_URL } from "constants/moviePoster";
 import "./Movie.scss";
 
 const Movie = ({ movie }) => {
-  const poster =
-    movie.poster_path === null
-      ? DEFAULT_POSTER
-      : `${MOVIE_POSTER_URL}${movie.poster_path}`;
+  const poster = movie.poster_path
+    ? `${MOVIE_POSTER_URL}${movie.poster_path}`
+    : DEFAULT_POSTER;
   return (
     <div className="Movie">
       <div>
