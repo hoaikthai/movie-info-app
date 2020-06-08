@@ -16,7 +16,7 @@ const SearchPage = ({ history }) => {
   const page = urlObject.searchParams.get("page");
 
   const applyParams = useCallback(
-    ({queryText, page}) => {
+    ({ queryText, page }) => {
       history.push({ search: `?query=${queryText}&page=${page}` });
     },
     [history]
@@ -31,22 +31,22 @@ const SearchPage = ({ history }) => {
       return;
     }
     fetchMovies({ query: queryText, page: page, dispatch: dispatch });
-    applyParams({queryText: queryText, page: page})
+    applyParams({ queryText: queryText, page: page });
   }, [queryText, page, applyParams]);
+
+  if (loading) {
+    return <span>loading...</span>;
+  }
+
+  if (errorMessages) {
+    return errorMessages.map((message, id) => <span key={id}>{message}</span>);
+  }
 
   return (
     <div>
-      <Search onSearch={search} />
-      {loading ? (
-        <span>loading...</span>
-      ) : errorMessages ? (
-        errorMessages.map((message, id) => <span key={id}>{message}</span>)
-      ) : (
-        <>
-          <MovieContainer movies={movies} />
-          <Pagination totalPages={totalPages} />
-        </>
-      )}
+      <Search defaultValue={queryText} onSearch={search} />
+      <MovieContainer movies={movies} />
+      <Pagination totalPages={totalPages} />
     </div>
   );
 };
