@@ -2,14 +2,19 @@ import React, { useState } from "react";
 
 import "./Search.scss";
 
-const Search = ({ defaultValue, onSearch }) => {
+interface ISearchProps {
+  defaultValue: string | null;
+  onSearch: (text: string) => void;
+}
+
+const Search = ({ defaultValue, onSearch }: ISearchProps) => {
   const [searchValue, setSearchValue] = useState(defaultValue ?? "");
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSearch(searchValue);
   };

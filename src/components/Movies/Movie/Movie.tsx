@@ -1,10 +1,15 @@
 import React from "react";
 
-import { DEFAULT_POSTER, MOVIE_POSTER_URL } from "constants/moviePoster";
+import { DEFAULT_POSTER, MOVIE_POSTER_URL } from "src/constants/moviePoster";
+import { MovieModel } from "src/types/movie";
 import "./Movie.scss";
 
-const Movie = ({ movie }) => {
-  const poster = movie.poster_path
+interface IMovieProps {
+  movie: MovieModel;
+}
+
+const Movie: React.FunctionComponent<IMovieProps> = ({ movie }: IMovieProps) => {
+  const poster: string = movie.poster_path
     ? `${MOVIE_POSTER_URL}${movie.poster_path}`
     : DEFAULT_POSTER;
   return (

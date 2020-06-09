@@ -1,18 +1,25 @@
-import { ELLIPSIS, PREVIOUS, NEXT, FIRST, LAST } from "constants/pagination";
+import {
+  ELLIPSIS,
+  PREVIOUS,
+  NEXT,
+  FIRST,
+  LAST,
+} from "src/constants/pagination";
 
-export const generatePaginationArray = ({
-  currentPage,
-  totalPages,
-  siblingRange = 1,
-  showPreviousAndNext = true,
-  showFirstAndLast = true,
-  showEllipsis = true,
-}) => {
-  const siblingArray = Array(2 * siblingRange + 1)
-    .fill()
-    .map((_, i) => currentPage - siblingRange + i);
+export const generatePaginationArray = (
+  currentPage: string,
+  totalPages: number,
+  siblingRange: number = 1,
+  showPreviousAndNext: boolean = true,
+  showFirstAndLast: boolean = true,
+  showEllipsis: boolean = true
+) => {
+  // tslint:disable-next-line: no-magic-numbers
+  const siblingArray: number[] = Array(2 * siblingRange + 1)
+    .fill(0)
+    .map((_, i: number) => Number(currentPage) - siblingRange + i);
   const showingNumbers = [...new Set([1, ...siblingArray, totalPages])];
-  let result = [];
+  let result: string[] = [];
   for (let i = 1; i <= totalPages; i++) {
     if (showingNumbers.includes(i)) {
       result.push(i.toString());
@@ -33,7 +40,11 @@ export const generatePaginationArray = ({
   return result;
 };
 
-export const mapTextToPage = ({ text, currentPage, totalPages }) => {
+export const mapTextToPage = (
+  text: string,
+  currentPage: string,
+  totalPages: number
+): string => {
   switch (text) {
     case PREVIOUS:
       return String(Number(currentPage) - 1);
@@ -42,8 +53,8 @@ export const mapTextToPage = ({ text, currentPage, totalPages }) => {
     case FIRST:
       return String(1);
     case LAST:
-      return totalPages;
+      return String(totalPages);
     default:
-      return;
+      return text;
   }
 };

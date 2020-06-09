@@ -1,18 +1,25 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import * as qs from "query-string";
 
 import "./PaginationItem.scss";
 
-const PaginationItem = ({
+interface IPaginationItemProps extends RouteComponentProps {
+  active: boolean;
+  disabled: boolean;
+  value: string;
+  text: string;
+}
+
+const PaginationItem: React.FunctionComponent<IPaginationItemProps> = ({
   active = false,
   disabled = false,
   value,
   text,
   history,
   location,
-}) => {
-  let classes = ["PaginationItem"];
+}: IPaginationItemProps) => {
+  const classes: string[] = ["PaginationItem"];
   if (active) {
     classes.push("PaginationItem--active");
   } else if (disabled) {
