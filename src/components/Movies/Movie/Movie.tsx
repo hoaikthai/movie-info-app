@@ -14,7 +14,7 @@ const Movie: React.FunctionComponent<IMovieProps> = ({
 }: IMovieProps) => {
   const [showDetail, setShowDetail] = useState(false);
   const poster: string = movie.poster_path
-    ? `${MOVIE_POSTER_URL}/k0b33UJhJWC0TUjJGnQPm4spVaf.jpg`
+    ? `${MOVIE_POSTER_URL}${movie.poster_path}`
     : DEFAULT_POSTER;
 
   return (
