@@ -1,0 +1,15 @@
+.MovieDetail {
+  position: absolute;
+  background-color: gray;
+  width: 200px;
+  height: 300px;
+  overflow-y: scroll;
+
+  h4 {
+    margin-left: 10px;
+  }
+
+  li {
+    list-style: none;
+  }
+}
