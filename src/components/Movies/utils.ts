@@ -1,34 +1,40 @@
 import { Dispatch } from "react";
 
-import { MOVIE_API_KEY, SEARCH_MOVIE_API_URL } from "src/constants/movieApi";
+import MovieApi from "src/constants/movieApi";
+import HttpStatus from "src/constants/httpStatus";
 import {
-  SEARCH_MOVIE_SUCCESS,
-  SEARCH_MOVIE_FAILURE,
-  SEARCH_MOVIE_REQUEST,
+  FETCH_MOVIE_SUCCESS,
+  FETCH_MOVIE_FAILURE,
+  FETCH_MOVIE_REQUEST,
 } from "src/constants/actionTypes";
 import { FetchMoviesResponse } from "src/types/fetchMoviesResponses";
-import { SUCCESS } from "src/constants/httpStatusCodes";
 import genres from "src/data/genres.json";
 
 interface FetchMoviesInput {
-  query: string | null;
+  query?: string | null;
   page: string | null;
+  endpoint: string;
   dispatch: Dispatch<{ type: string; payload?: FetchMoviesResponse }>;
 }
 
 export const fetchMovies = async ({
+  endpoint,
   query,
   page,
-  dispatch,
+  dispatch
 }: FetchMoviesInput) => {
-  dispatch({ type: SEARCH_MOVIE_REQUEST });
+  dispatch({ type: FETCH_MOVIE_REQUEST });
+  let queryParams = `page=${page}&api_key=${MovieApi.KEY}`;
+  if (query) {
+    queryParams += `&query=${query}`;
+  }
   const response: Response = await fetch(
-    `${SEARCH_MOVIE_API_URL}?query=${query}&page=${page}&api_key=${MOVIE_API_KEY}`
+    `${MovieApi.HOST + endpoint}?${queryParams}`
   );
   const jsonResponse: FetchMoviesResponse = await response.json();
   dispatch({
     type:
-      response.status === SUCCESS ? SEARCH_MOVIE_SUCCESS : SEARCH_MOVIE_FAILURE,
+      response.status === HttpStatus.OK ? FETCH_MOVIE_SUCCESS : FETCH_MOVIE_FAILURE,
     payload: jsonResponse,
   });
 };

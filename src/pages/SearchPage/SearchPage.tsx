@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect, useCallback } from "react";
 import { withRouter, RouteComponentProps } from "react-router";
 
+import MovieApi from "src/constants/movieApi";
 import Search from "src/components/Search/Search";
 import MovieContainer from "src/components/Movies/MovieContainer";
 import Pagination from "src/components/Pagination/Pagination";
@@ -35,7 +36,7 @@ const SearchPage = ({ history }: RouteComponentProps) => {
     if (!queryParams && !pageParams) {
       return;
     }
-    fetchMovies({ query: queryParams, page: pageParams, dispatch });
+    fetchMovies({ endpoint: MovieApi.SEARCH_MOVIE_EP, query: queryParams, page: pageParams, dispatch });
     applyParams({ query: queryParams, page: pageParams });
   }, [queryParams, pageParams, applyParams]);
 
