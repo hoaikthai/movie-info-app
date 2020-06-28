@@ -20,6 +20,7 @@ const SearchPage = ({ history }: RouteComponentProps) => {
   const urlObject = new URL(window.location.href);
   const queryParams = urlObject.searchParams.get("query");
   const pageParams = urlObject.searchParams.get("page");
+  let movieContent: JSX.Element;
 
   const applyParams = useCallback(
     ({ query, page }: IQueryParams): void => {
@@ -36,20 +37,30 @@ const SearchPage = ({ history }: RouteComponentProps) => {
     if (!queryParams && !pageParams) {
       return;
     }
-    fetchMovies({ endpoint: MovieApi.SEARCH_MOVIE_EP, query: queryParams, page: pageParams, dispatch });
+    fetchMovies({
+      endpoint: MovieApi.SEARCH_MOVIE_EP,
+      query: queryParams,
+      page: pageParams,
+      dispatch,
+    });
     applyParams({ query: queryParams, page: pageParams });
   }, [queryParams, pageParams, applyParams]);
 
   if (loading) {
-    return <span>loading...</span>;
-  }
-
-  if (errorMessages) {
-    return (
+    movieContent = <span>loading...</span>;
+  } else if (errorMessages) {
+    movieContent = (
       <>
         {errorMessages.map((message: string, id: number) => (
           <span key={id}>{message}</span>
         ))}
+      </>
+    );
+  } else {
+    movieContent = (
+      <>
+        <MovieContainer title="Search result" movies={movies} />
+        <Pagination totalPages={totalPages} />
       </>
     );
   }
@@ -57,8 +68,7 @@ const SearchPage = ({ history }: RouteComponentProps) => {
   return (
     <div>
       <Search defaultValue={queryParams} onSearch={search} />
-      <MovieContainer title="Search result" movies={movies} />
-      <Pagination totalPages={totalPages} />
+      {movieContent}
     </div>
   );
 };
