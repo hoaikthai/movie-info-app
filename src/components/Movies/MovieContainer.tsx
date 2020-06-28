@@ -4,10 +4,14 @@ import "./MovieContainer.scss";
 import { MovieModel } from "src/types/movie";
 
 interface IMovieContainerProps {
+  title: string;
   movies: MovieModel[];
 }
 
-const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({ movies }: IMovieContainerProps) => {
+const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
+  title,
+  movies,
+}: IMovieContainerProps) => {
   let moviesContent: string | JSX.Element[] = "No movie";
 
   if (movies?.length > 0) {
@@ -16,7 +20,12 @@ const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({ movies 
     ));
   }
 
-  return <div className="MovieContainer">{moviesContent}</div>;
+  return (
+    <div className="MovieContainer">
+      <h3 className="MovieContainer__title">{title}</h3>
+      <div className="MovieContainer__content">{moviesContent}</div>
+    </div>
+  );
 };
 
 export default MovieContainer;

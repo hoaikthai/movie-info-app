@@ -57,7 +57,7 @@ const SearchPage = ({ history }: RouteComponentProps) => {
   return (
     <div>
       <Search defaultValue={queryParams} onSearch={search} />
-      <MovieContainer movies={movies} />
+      <MovieContainer title="Search result" movies={movies} />
       <Pagination totalPages={totalPages} />
     </div>
   );

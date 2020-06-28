@@ -1,6 +1,13 @@
 .MovieContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  column-gap: 24px;
   margin: 50px 100px;
+
+  &__title {
+    margin-left: 20px;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    column-gap: 24px;
+  }
 }
