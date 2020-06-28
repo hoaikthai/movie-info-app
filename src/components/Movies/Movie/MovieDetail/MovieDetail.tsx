@@ -13,8 +13,8 @@ const MovieDetail: React.FunctionComponent<IMovieProps> = ({
 }: IMovieProps) => {
   return (
     <div className="MovieDetail">
-      <h4>{movie.title}</h4>
-      <ul>
+      <h4 className="MovieDetail__title">{movie.title}</h4>
+      <ul className="MovieDetail__info">
         <li>
           <h5>Release date:</h5>
           <p>{movie.release_date}</p>

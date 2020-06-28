@@ -5,11 +5,14 @@
   height: 300px;
   overflow-y: scroll;
 
-  h4 {
+  &__title {
     margin-left: 10px;
   }
 
-  li {
-    list-style: none;
+  &__info {
+    padding: 0 20px;
+    li {
+      list-style: none;
+    }
   }
 }
