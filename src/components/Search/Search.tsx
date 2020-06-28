@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Search.scss";
 
 interface ISearchProps {
-  defaultValue: string | null;
+  defaultValue?: string | null;
   onSearch: (text: string) => void;
 }
 
