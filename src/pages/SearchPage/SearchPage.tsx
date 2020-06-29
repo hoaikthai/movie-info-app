@@ -29,10 +29,6 @@ const SearchPage = ({ history }: RouteComponentProps) => {
     [history]
   );
 
-  const search = (text: string) => {
-    applyParams({ query: text, page: "1" });
-  };
-
   useEffect(() => {
     if (!queryParams && !pageParams) {
       return;
@@ -67,7 +63,7 @@ const SearchPage = ({ history }: RouteComponentProps) => {
 
   return (
     <div>
-      <Search defaultValue={queryParams} onSearch={search} />
+      <Search defaultValue={queryParams} />
       {movieContent}
     </div>
   );

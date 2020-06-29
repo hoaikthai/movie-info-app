@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
 import "./Search.scss";
 
 interface ISearchProps {
   defaultValue?: string | null;
-  onSearch: (text: string) => void;
 }
 
-const Search = ({ defaultValue, onSearch }: ISearchProps) => {
+const Search = ({ defaultValue }: ISearchProps) => {
   const [searchValue, setSearchValue] = useState(defaultValue ?? "");
+  const history = useHistory();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -16,7 +17,7 @@ const Search = ({ defaultValue, onSearch }: ISearchProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSearch(searchValue);
+    history.push({ pathname: "/search", search: `?query=${searchValue}&page=1` });
   };
 
   return (

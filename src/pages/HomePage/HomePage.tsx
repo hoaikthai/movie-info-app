@@ -18,10 +18,6 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
   const pageParams = urlObject.searchParams.get("page") || "1";
   let movieContent: JSX.Element;
 
-  const search = (text: string) => {
-    history.push({ pathname: "/search", search: `?query=${text}&page=1` });
-  };
-
   useEffect(() => {
     fetchMovies({
       endpoint: MovieApi.POPULAR_MOVIE_EP,
@@ -52,7 +48,7 @@ const HomePage: React.FunctionComponent<RouteComponentProps> = ({
 
   return (
     <div>
-      <Search onSearch={search} />
+      <Search />
       {movieContent}
     </div>
   );
