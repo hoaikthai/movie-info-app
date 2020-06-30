@@ -1,18 +1,38 @@
 import React from "react";
+
 import Movie from "./Movie/Movie";
 import "./MovieContainer.scss";
 import { MovieModel } from "src/types/movie";
+import Pagination from "src/components/Pagination/Pagination";
 
 interface IMovieContainerProps {
   title: string;
   movies: MovieModel[];
+  loading: boolean;
+  errorMessages: string[] | null;
+  totalPages: number;
 }
 
 const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
   title,
   movies,
+  loading,
+  errorMessages,
+  totalPages
 }: IMovieContainerProps) => {
   let moviesContent: string | JSX.Element[] = "No movie";
+
+  if (loading) {
+    return <span>loading...</span>;
+  } else if (errorMessages) {
+    return (
+      <>
+        {errorMessages.map((message: string, id: number) => (
+          <span key={id}>{message}</span>
+        ))}
+      </>
+    );
+  }
 
   if (movies?.length > 0) {
     moviesContent = movies.map((movie: MovieModel) => (
@@ -24,6 +44,7 @@ const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
     <div className="MovieContainer">
       <h3 className="MovieContainer__title">{title}</h3>
       <div className="MovieContainer__content">{moviesContent}</div>
+      <Pagination totalPages={totalPages} />
     </div>
   );
 };
