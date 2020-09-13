@@ -32,6 +32,7 @@ const searchMovieReducer = (
         loading: false,
         movies: payload.results,
         totalPages: payload.total_pages,
+        errorMessages: null,
       };
     }
     case FETCH_MOVIE_FAILURE: {
