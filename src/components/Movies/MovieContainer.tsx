@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Movie from "./Movie/Movie";
 import "./MovieContainer.scss";
@@ -18,7 +19,7 @@ const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
   movies,
   loading,
   errorMessages,
-  totalPages
+  totalPages,
 }: IMovieContainerProps) => {
   let moviesContent: string | JSX.Element[] = "No movie";
 
@@ -30,8 +31,12 @@ const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
         {errorMessages.map((message: string, id: number) => (
           <span key={id}>{message}</span>
         ))}
+        <br />
+        <Link to="/">Back to popular movies</Link>
       </>
     );
+  } else if (movies?.length === 0) {
+    return <Link to="/">Back to popular movies</Link>;
   }
 
   if (movies?.length > 0) {
