@@ -1,40 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router";
 
 import "./Search.scss";
+import useDebounce from "src/hooks/useDebounce";
 
 interface ISearchProps {
   defaultValue?: string | null;
 }
 
 const Search = ({ defaultValue }: ISearchProps) => {
-  const [searchValue, setSearchValue] = useState(defaultValue ?? "");
+  const SEARCH_DELAY = 500;
   const history = useHistory();
+  const [searchValue, setSearchValue] = useState(defaultValue ?? "");
+  const debouncedSearchValue = useDebounce(searchValue, SEARCH_DELAY);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
+  const updateParams = useCallback(
+    (value: string) => {
+      history.push({ pathname: "/search", search: `?query=${value}&page=1` });
+    },
+    [history]
+  );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    history.push({ pathname: "/search", search: `?query=${searchValue}&page=1` });
-  };
+  useEffect(() => {
+    if (debouncedSearchValue) {
+      updateParams(debouncedSearchValue);
+    }
+  }, [debouncedSearchValue, updateParams]);
 
   return (
     <div className="Search">
-      <form className="Search__Form" onSubmit={handleSubmit}>
+      <form className="Search__Form">
         <input
           type="text"
           className="Search__Field"
           value={searchValue}
-          onChange={handleInputChange}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button
-          className="Search__Button Search__Button--primary Search__Button--inside"
-          type="submit"
-        >
-          Search
-        </button>
       </form>
     </div>
   );
