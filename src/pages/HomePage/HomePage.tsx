@@ -3,10 +3,10 @@ import { withRouter } from "react-router";
 
 import MovieApi from "src/constants/movieApi";
 import MovieContainer from "src/components/Movies/MovieContainer";
-import useFetchMovie from "src/hooks/useFetchMovie";
+import useFetchMovies from "src/hooks/useFetchMovies";
 
 const HomePage: React.FunctionComponent = () => {
-  const { movies, totalPages, loading, errorMessages } = useFetchMovie(MovieApi.POPULAR_MOVIE_EP);
+  const { movies, totalPages, loading, errorMessages } = useFetchMovies(MovieApi.POPULAR_MOVIE_EP);
 
   return (
     <div>

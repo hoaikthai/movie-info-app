@@ -10,7 +10,7 @@ interface ISearchParams {
   page: string | null;
 }
 
-const useFetchMovie = (endpoint: string) => {
+const useFetchMovies = (endpoint: string) => {
   const history = useHistory();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { movies, totalPages, loading, errorMessages } = state;
@@ -45,4 +45,4 @@ const useFetchMovie = (endpoint: string) => {
   return { loading, errorMessages, totalPages, movies };
 };
 
-export default useFetchMovie;
+export default useFetchMovies;
