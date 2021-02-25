@@ -6,7 +6,7 @@ import Search from "src/components/Search/Search";
 import MovieContainer from "src/components/Movies/MovieContainer";
 import useFetchMovie from "src/hooks/useFetchMovie";
 
-const SearchPage: React.FunctionComponent = () => {
+const MoviesPage: React.FunctionComponent = () => {
   const urlObject = new URL(window.location.href);
   const queryParams = urlObject.searchParams.get("query");
   const { movies, totalPages, loading, errorMessages } = useFetchMovie(MovieApi.SEARCH_MOVIE_EP);
@@ -25,4 +25,4 @@ const SearchPage: React.FunctionComponent = () => {
   );
 };
 
-export default withRouter(SearchPage);
+export default withRouter(MoviesPage);

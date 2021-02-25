@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { DEFAULT_POSTER, MOVIE_POSTER_URL_W200 } from "src/constants/moviePoster";
 import { MovieModel } from "src/types/movie";
@@ -30,7 +31,7 @@ const Movie: React.FunctionComponent<IMovieProps> = ({
         alt={`The movie title: ${movie.title}`}
         src={poster}
       />
-      <h4>{movie.title}</h4>
+      <Link to={`/movies/${movie.id}`}><h4>{movie.title}</h4></Link>
     </div>
   );
 };

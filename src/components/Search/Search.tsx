@@ -17,7 +17,7 @@ const Search = ({ defaultValue }: ISearchProps) => {
   const updateParams = useCallback(
     (value: string) => {
       if (value) {
-        history.push({ pathname: "/search", search: `?query=${value}&page=1` });
+        history.push({ pathname: "/movies", search: `?query=${value}&page=1` });
       } else {
         history.push({ pathname: "/" });
       }

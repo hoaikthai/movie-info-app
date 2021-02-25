@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./App.scss";
 import Header from "./Header";
-import SearchPage from "src/pages/SearchPage/SearchPage";
+import MoviesPage from "src/pages/MoviesPage/MoviesPage";
 import HomePage from "src/pages/HomePage/HomePage";
 import ThemeContext from "./context/ThemeContext";
 
@@ -14,8 +14,11 @@ const App = () => {
         <div className={`App ${theme}`}>
           <Header />
           <Switch>
-            <Route path="/search">
-              <SearchPage />
+            <Route path="/movies/:id">
+              <MoviesPage />
+            </Route>
+            <Route path="/movies">
+              <MoviesPage />
             </Route>
             <Route path="/">
               <HomePage />
