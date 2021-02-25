@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router";
 
 import MovieApi from "src/constants/movieApi";
-import Search from "src/components/Search/Search";
 import MovieContainer from "src/components/Movies/MovieContainer";
 import useFetchMovie from "src/hooks/useFetchMovie";
 
@@ -11,7 +10,6 @@ const HomePage: React.FunctionComponent = () => {
 
   return (
     <div>
-      <Search />
       <MovieContainer
         title="Popular movies"
         movies={movies}
