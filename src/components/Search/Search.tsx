@@ -16,15 +16,17 @@ const Search = ({ defaultValue }: ISearchProps) => {
 
   const updateParams = useCallback(
     (value: string) => {
-      history.push({ pathname: "/search", search: `?query=${value}&page=1` });
+      if (value) {
+        history.push({ pathname: "/search", search: `?query=${value}&page=1` });
+      } else {
+        history.push({ pathname: "/" });
+      }
     },
     [history]
   );
 
   useEffect(() => {
-    if (debouncedSearchValue) {
-      updateParams(debouncedSearchValue);
-    }
+    updateParams(debouncedSearchValue);
   }, [debouncedSearchValue, updateParams]);
 
   return (
@@ -35,6 +37,7 @@ const Search = ({ defaultValue }: ISearchProps) => {
           className="Search__Field"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
+          placeholder="Search..."
         />
       </form>
     </div>

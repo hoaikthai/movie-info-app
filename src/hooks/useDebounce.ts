@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useDebounce = (value: string, time: number) => {
-  const [debouncedValue, setDebouncedValue] = useState('');
+  const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
@@ -9,7 +9,7 @@ const useDebounce = (value: string, time: number) => {
     return () => {
       clearTimeout(handler);
     };
-  }, [debouncedValue, value, time]);
+  }, [value, time]);
 
   return debouncedValue;
 };
