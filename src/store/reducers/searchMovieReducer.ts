@@ -1,7 +1,7 @@
 import {
-  FETCH_MOVIE_REQUEST,
-  FETCH_MOVIE_SUCCESS,
-  FETCH_MOVIE_FAILURE,
+  FETCH_MOVIES_REQUEST,
+  FETCH_MOVIES_SUCCESS,
+  FETCH_MOVIES_FAILURE,
 } from "src/constants/actionTypes";
 import { SearchMovieState } from "src/types/searchMovieState";
 import {
@@ -20,12 +20,12 @@ const searchMovieReducer = (
   action: SearchMovieAction
 ): SearchMovieState => {
   switch (action.type) {
-    case FETCH_MOVIE_REQUEST:
+    case FETCH_MOVIES_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case FETCH_MOVIE_SUCCESS: {
+    case FETCH_MOVIES_SUCCESS: {
       const payload = action.payload as FetchMoviesSuccessResponse;
       return {
         ...state,
@@ -35,7 +35,7 @@ const searchMovieReducer = (
         errorMessages: null,
       };
     }
-    case FETCH_MOVIE_FAILURE: {
+    case FETCH_MOVIES_FAILURE: {
       const payload = action.payload as FetchMoviesErrorResponse;
       return {
         ...state,
