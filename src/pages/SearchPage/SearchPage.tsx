@@ -15,7 +15,7 @@ const SearchPage: React.FunctionComponent = () => {
     <div>
       <Search defaultValue={queryParams} />
       <MovieContainer
-        title="Popular movies"
+        title="Search result"
         movies={movies}
         loading={loading}
         errorMessages={errorMessages}
