@@ -22,6 +22,7 @@ const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
   totalPages,
 }: IMovieContainerProps) => {
   let moviesContent: string | JSX.Element[] = "No movie";
+  const backToHomeLink = <Link to="/" className="link home-link">Back to popular movies</Link>;
 
   if (loading) {
     return <span>loading...</span>;
@@ -32,11 +33,11 @@ const MovieContainer: React.FunctionComponent<IMovieContainerProps> = ({
           <span key={id}>{message}</span>
         ))}
         <br />
-        <Link to="/">Back to popular movies</Link>
+        {backToHomeLink}
       </>
     );
   } else if (movies?.length === 0) {
-    return <Link to="/">Back to popular movies</Link>;
+    return backToHomeLink;
   }
 
   if (movies?.length > 0) {
