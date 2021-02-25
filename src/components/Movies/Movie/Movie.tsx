@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { DEFAULT_POSTER, MOVIE_POSTER_URL } from "src/constants/moviePoster";
+import { DEFAULT_POSTER, MOVIE_POSTER_URL_W200 } from "src/constants/moviePoster";
 import { MovieModel } from "src/types/movie";
 import MovieDetail from "./MovieDetail/MovieDetail";
 import "./Movie.scss";
@@ -14,7 +14,7 @@ const Movie: React.FunctionComponent<IMovieProps> = ({
 }: IMovieProps) => {
   const [showDetail, setShowDetail] = useState(false);
   const poster: string = movie.poster_path
-    ? `${MOVIE_POSTER_URL}${movie.poster_path}`
+    ? `${MOVIE_POSTER_URL_W200}${movie.poster_path}`
     : DEFAULT_POSTER;
 
   return (
