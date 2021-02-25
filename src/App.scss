@@ -1,0 +1,12 @@
+$bg-color: black;
+$text-color: #ececec;
+
+.App {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.dark {
+  background-color: $bg-color;
+  color: $text-color;
+}
