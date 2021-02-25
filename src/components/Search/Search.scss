@@ -1,5 +1,3 @@
-$button-bg-color: #7f8ff4;
-
 .Search {
   display: flex;
   align-items: center;
@@ -8,9 +6,16 @@ $button-bg-color: #7f8ff4;
   &__Field {
     width: 400px;
     font: 1rem "PT Sans", sans-serif;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
     border: 0;
+    border-bottom: 1px solid #ececec;
     outline: 0;
+    background-color: black;
+    color: #ececec;
     padding: 16px 12px;
+    transition: border 0.3s ease-in-out;
+
+    &:focus {
+      border-bottom: 1px solid #30475e;
+    }
   }
 }
