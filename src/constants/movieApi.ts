@@ -2,6 +2,7 @@ const MovieApi = {
   KEY: process.env.REACT_APP_MOVIE_API_KEY,
   HOST: "https://api.themoviedb.org/3",
   SEARCH_MOVIE_EP: "/search/movie",
+  DETAIL_MOVIE_EP: "/movie/",
   POPULAR_MOVIE_EP: "/movie/popular",
 }
 

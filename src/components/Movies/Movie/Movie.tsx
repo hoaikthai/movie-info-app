@@ -31,7 +31,7 @@ const Movie: React.FunctionComponent<IMovieProps> = ({
         alt={`The movie title: ${movie.title}`}
         src={poster}
       />
-      <Link to={`/movies/${movie.id}`}><h4>{movie.title}</h4></Link>
+      <Link to={`/movies/${movie.id}`} className="link"><h4>{movie.title}</h4></Link>
     </div>
   );
 };

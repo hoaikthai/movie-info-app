@@ -6,7 +6,7 @@ export interface MovieModel {
   original_title: string;
   genre_ids: number[];
   adult: boolean;
-  overview: string;
+  overview: string | null;
   poster_path: string | null;
   popularity: number;
 }
